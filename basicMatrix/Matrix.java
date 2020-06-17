@@ -21,7 +21,7 @@ public class Matrix {
 	public Matrix(float [][] matrix) {
 
 		if(matrix.length == 0) {
-			return; // return some sort of exception
+			throw new DimensionCompatibilityException("Need viable matrix");
 		}
 		
 		rows = matrix.length;
@@ -51,6 +51,7 @@ public class Matrix {
 	}
 	
 	/**
+	 * Get the number of rows in the matrix.
 	 * 
 	 * @return int representing the number of rows in the matrix
 	 */
@@ -59,6 +60,7 @@ public class Matrix {
 	}
 	
 	/**
+	 * Get the number of columns in the matrix.
 	 * 
 	 * @return int representing the number of columns in the matrix
 	 */
@@ -67,25 +69,65 @@ public class Matrix {
 	}
 	
 	/**
+	 * Apply the scalar multiplication operation to the matrix.
 	 * 
-	 * @param scalar
+	 * @param scalar -- float by which the matrix is multiplied
 	 */
 	public void scalarMultiply(float scalar) {
-		
+		for(int row = 0; row < rows; row++) {
+			for(int col = 0; col < cols; col++) {
+				matrix[row][col] = scalar * matrix[row][col];
+			}
+		}
 	}
 	
 	/**
-	 * 
+	 * Reduce the matrix to row echelon form.
 	 */
 	public void ref() {
 		
 	}
 	
 	/**
-	 * 
+	 * Reduce the matrix to reduced row echelon form. 
 	 */
 	public void rref() {
 
+	}
+	
+	
+	/**
+	 * Find the dot product of matrix A with matrix B.
+	 * 
+	 * @param A -- first matrix in the operation
+	 * @param B -- second matrix in the operation
+	 * @return matrix representing the dot product
+	 */
+	public static Matrix dot(Matrix A, Matrix B) {
+		if(A.rows != B.rows || A.cols != B.cols) {
+			throw new DimensionCompatibilityException(
+					"Dimensions must match for dot products");
+		}
+		
+		float[][] dotProd = new float[A.rows][A.cols];
+		for(int row = 0; row < A.rows; row++) {
+			for(int col = 0; col < A.cols; col++) {
+				dotProd[row][col] = A.matrix[row][col] * B.matrix[row][col];
+			}
+		}
+		
+		return new Matrix(dotProd);
+	}
+	
+	/**
+	 * Multiply matrix A with matrix B in that order.
+	 * 
+	 * @param A -- first matrix in the operation
+	 * @param B -- second matrix in the operation
+	 * @return matrix representing the product
+	 */
+	public static Matrix multiply(Matrix A, Matrix B) {
+		return null;
 	}
 	
 	
