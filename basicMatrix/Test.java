@@ -14,5 +14,10 @@ public class Test {
 		matrix.scalarMultiply(10);
 		assertTrue(matrix.matrix[1][2]==30);
 	}
+	
+	@org.junit.Test
+	public void testElementaryRowOperations() {
+		
+	}
 
 }

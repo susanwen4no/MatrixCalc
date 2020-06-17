@@ -3,6 +3,8 @@ package basicMatrix;
 /**
  * This mutable class is a wrapper around a 2D array to represent
  * the mathematical construct of a matrix, including its operations.
+ * The class uses zero-based indexing with the first row as row zero and
+ * the first column as column zero.
  * 
  * @author Susan Wen
  *
@@ -82,17 +84,61 @@ public class Matrix {
 	}
 	
 	/**
+	 * Apply the elementary row operation of multiplying a row
+	 * by a given number.
+	 * 
+	 * @param row -- row to which the operation is applied
+	 * @param multiple -- number row is multiplied by
+	 */
+	public void rowMultiply(int row, float multiple) {
+		// TO DO
+	}
+	
+	/**
+	 * Apply the elementary row operation of switching the rows given.
+	 * 
+	 * @param rowA -- first given row
+	 * @param rowB -- second given row
+	 */
+	public void rowSwitch(int rowA, int rowB) {
+		if(rowA >= rows || rowB >= rows) {
+			return; // UHHHHH THROW EXCEPTION?
+		}
+		
+		float[] copyA = matrix[rowA]; // this is shallow so it doesnt work
+		matrix[rowA] = matrix[rowB];
+		matrix[rowB] = copyA;
+	}
+	
+	/**
+	 * Apply the elementary row operation of adding a row to another.
+	 * Add rowB to rowA.
+	 * 
+	 * @param rowA -- row that is added to
+	 * @param rowB -- row that is added
+	 */
+	public void rowAdd(int rowA, int rowB) {
+		if(rowA >= rows || rowB >= rows) {
+			return; // UHHHHH THROW EXCEPTION?
+		}
+		
+		for(int col = 0; col < cols; col++) {
+			matrix[rowA][col] = matrix[rowA][col] + matrix[rowB][col];
+		}
+	}
+	
+	/**
 	 * Reduce the matrix to row echelon form.
 	 */
 	public void ref() {
-		
+		// TO DO
 	}
 	
 	/**
 	 * Reduce the matrix to reduced row echelon form. 
 	 */
 	public void rref() {
-
+		// TO DO
 	}
 	
 	
@@ -127,7 +173,7 @@ public class Matrix {
 	 * @return matrix representing the product
 	 */
 	public static Matrix multiply(Matrix A, Matrix B) {
-		return null;
+		return null; // TO DO
 	}
 	
 	
